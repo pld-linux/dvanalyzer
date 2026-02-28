@@ -2,7 +2,7 @@ Summary:	Technical and tag information about video or audio file (CLI)
 Summary(pl.UTF-8):	Informacje techniczne i oznaczenia dotyczące pliku wideo lub audio (CLI)
 Name:		dvanalyzer
 Version:	1.4.2
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/Multimedia
 Source0:	https://mediaarea.net/download/source/dvanalyzer/%{version}/%{name}_%{version}.tar.xz
