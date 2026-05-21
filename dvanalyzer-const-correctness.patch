@@ -1,0 +1,18 @@
+Fix const-correctness: ToPush.Errors is const char* in the upstream struct,
+so memcpy() into it fails with GCC. Allocate via a local non-const pointer
+first, then assign to the const member.
+
+--- Source/Common/Core.cpp.orig
++++ Source/Common/Core.cpp
+@@ -142,8 +142,9 @@
+     if (ToPush.Errors)
+     {
+         size_t SizeToCopy=std::strlen(FrameData->Errors)+1;
+-        ToPush.Errors=new char[SizeToCopy];
+-        std::memcpy(ToPush.Errors, FrameData->Errors, SizeToCopy);
++        char* Buf=new char[SizeToCopy];
++        std::memcpy(Buf, FrameData->Errors, SizeToCopy);
++        ToPush.Errors=Buf;
+     }
+     Analysis[Analysis.size()-1]->push_back(ToPush);
+ }

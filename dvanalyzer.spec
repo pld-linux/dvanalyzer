@@ -2,11 +2,12 @@ Summary:	Technical and tag information about video or audio file (CLI)
 Summary(pl.UTF-8):	Informacje techniczne i oznaczenia dotyczące pliku wideo lub audio (CLI)
 Name:		dvanalyzer
 Version:	1.4.2
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Applications/Multimedia
 Source0:	https://mediaarea.net/download/source/dvanalyzer/%{version}/%{name}_%{version}.tar.xz
 # Source0-md5:	207b881f4762cc06cb5652fdddcb60ee
+Patch0:		%{name}-const-correctness.patch
 URL:		https://mediaarea.net/DVAnalyzer
 BuildRequires:	Qt5Gui-devel >= 5
 BuildRequires:	Qt5Widgets-devel >= 5
@@ -77,6 +78,8 @@ klatki w poszczególnych nagraniach itd.
 
 %prep
 %setup -q -n AVPS_DV_Analyzer
+%undos Source/Common/Core.cpp
+%patch -P0 -p0
 %undos *.html *.txt Release/*.txt
 chmod 644 *.html *.txt Release/*.txt
 
